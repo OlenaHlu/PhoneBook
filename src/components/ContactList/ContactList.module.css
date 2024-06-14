@@ -1,0 +1,20 @@
+.component {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  border: 1px solid #6a6666;
+  border-radius: 8px;
+  padding: 16px;
+  width: 200px;
+}
