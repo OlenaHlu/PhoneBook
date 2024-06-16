@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DocumentTitle from "../../components/DocumentTitle";
+import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 import { selectLoading } from "../../redux/contacts/selectors";
 import { fetchContacts } from "../../redux/contacts/operations";
 import ContactList from "../../components/ContactList/ContactList";
