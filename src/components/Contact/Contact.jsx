@@ -2,7 +2,7 @@ import { RiUser6Fill } from "react-icons/ri";
 import { MdPhone } from "react-icons/md";
 import css from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteContact, editContacts } from "../../redux/contacts/operations";
+import { deleteContact, editContact } from "../../redux/contacts/operations";
 
 import { toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
@@ -29,7 +29,7 @@ const Contact = ({ contact: { id, name, number } }) => {
   };
 
   const handleEdit = ({ name, number }) => {
-    dispatch(editContacts({ id, name, number }))
+    dispatch(editContact({ id, name, number }))
       .unwrap()
       .then(() => {
         infoToast("Edit success!", "success");

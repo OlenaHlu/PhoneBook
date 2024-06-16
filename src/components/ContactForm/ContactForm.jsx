@@ -36,17 +36,14 @@ const ContactForm = () => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-      .min(3, "Name must be at least 3 characters")
-      .max(50, "Name must not exceed 50 characters")
-
-      .required("Name is required"),
+      .min(2, "Too Short!")
+      .max(30, "Too Long!")
+      .required("Required"),
     number: Yup.string()
-      .min(7, "Number must be at least 7 characters")
-      .max(15, "Number must not exceed 15 characters")
-      .matches(/^\d{0,3}-?\d{0,2}-?\d{0,2}$/, "Invalid phone number format")
-      .required("Number is required"),
+      .min(9, "Too Short!")
+      .max(12, "Too Long!")
+      .required("Required"),
   });
-
   const handleSubmit = (values, actions) => {
     values.id = nanoid();
     const { name, number } = values;
