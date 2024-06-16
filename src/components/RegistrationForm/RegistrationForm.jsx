@@ -31,6 +31,7 @@ const RegistrationForm = () => {
       .max(20, "Too Long!")
       .required("Required"),
     email: Yup.string()
+      .email("Invalid email format")
       .min(7, "Too Short!")
       .max(30, "Too Long!")
       .required("Required"),
@@ -46,10 +47,10 @@ const RegistrationForm = () => {
     dispatch(register({ name, email, password }))
       .unwrap()
       .then(() => {
-        infoToast("Registration", "success");
+        infoToast("Registration successful", "success");
       })
       .catch(() => {
-        infoToast("Registration", "error");
+        infoToast("Registration failed", "error");
       });
     action.resetForm();
   };

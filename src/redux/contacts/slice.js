@@ -3,6 +3,7 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
+  editContact,
 } from "../contacts/operations";
 import { logout } from "../auth/operations";
 
@@ -32,6 +33,7 @@ const contactsSlice = createSlice({
         state.items = action.payload;
       })
       .addCase(fetchContacts.rejected, handleRejected)
+
       .addCase(addContact.pending, handlePending)
       .addCase(addContact.fulfilled, (state, action) => {
         state.loading = false;
@@ -39,6 +41,7 @@ const contactsSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(addContact.rejected, handleRejected)
+
       .addCase(deleteContact.pending, handlePending)
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.loading = false;
@@ -49,6 +52,18 @@ const contactsSlice = createSlice({
         state.items.splice(index, 1);
       })
       .addCase(deleteContact.rejected, handleRejected)
+
+      .addCase(editContact.pending, handlePending)
+      .addCase(editContact.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        const index = state.items.findIndex(
+          (task) => task.id === action.payload.id
+        );
+        state.items[index] = action.payload;
+      })
+      .addCase(editContact.rejected, handleRejected)
+
       .addCase(logout.fulfilled, (state) => {
         state.items = [];
         state.error = null;
