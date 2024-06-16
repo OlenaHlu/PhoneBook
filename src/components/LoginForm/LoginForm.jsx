@@ -65,7 +65,7 @@ const LoginForm = () => {
             id={emailId}
             placeholder="Enter your email..."
           />
-          <ErrorMessage />
+          <ErrorMessage name="email" component="div" />
         </div>
         <div>
           <label htmlFor={passwordId}>Password</label>
@@ -75,7 +75,7 @@ const LoginForm = () => {
             id={passwordId}
             placeholder="Enter your password..."
           />
-          <ErrorMessage />
+          <ErrorMessage name="password" component="div" />
         </div>
         <button type="submit">Log In</button>
       </Form>

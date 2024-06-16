@@ -3,7 +3,6 @@ import { register } from "../../redux/auth/operations";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { useId } from "react";
 import { toast } from "react-hot-toast";
-import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 
 const infoToast = (message, type) => {
@@ -70,7 +69,7 @@ const RegistrationForm = () => {
             id={nameId}
             placeholder="Enter your name..."
           />
-          <ErrorMessage />
+          <ErrorMessage name="name" component="div" />
         </div>
         <div>
           <label htmlFor={emailId}>Email</label>
@@ -80,7 +79,7 @@ const RegistrationForm = () => {
             id={emailId}
             placeholder="Enter your email..."
           />
-          <ErrorMessage />
+          <ErrorMessage name="email" component="div" />
         </div>
         <div>
           <label htmlFor={passwordId}>Password</label>
@@ -90,9 +89,9 @@ const RegistrationForm = () => {
             id={passwordId}
             placeholder="Enter your password..."
           />
-          <ErrorMessage />
+          <ErrorMessage name="password" component="div" />
         </div>
-        <button type="submit"></button>
+        <button type="submit">Register</button>
       </Form>
     </Formik>
   );

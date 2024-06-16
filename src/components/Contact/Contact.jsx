@@ -2,7 +2,24 @@ import { RiUser6Fill } from "react-icons/ri";
 import { MdPhone } from "react-icons/md";
 import css from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsOps";
+import { deleteContact, editContacts } from "../../redux/contacts/operations";
+
+import { toast } from "react-hot-toast";
+import "react-toastify/dist/ReactToastify.css";
+
+const infoToast = (message, type) => {
+  toast(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: type === "success" ? "light" : "colored",
+    type: type,
+  });
+};
 
 const Contact = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
@@ -10,6 +27,18 @@ const Contact = ({ contact: { id, name, number } }) => {
   const handleDelete = () => {
     dispatch(deleteContact(id));
   };
+
+  const handleEdit = ({ name, number }) => {
+    dispatch(editContacts({ id, name, number }))
+      .unwrap()
+      .then(() => {
+        infoToast("Edit success!", "success");
+      })
+      .catch(() => {
+        infoToast("Edit failed!", "error");
+      });
+  };
+
   return (
     <div className={css.contactContainer}>
       <div className={css.contactItem}>
@@ -21,6 +50,9 @@ const Contact = ({ contact: { id, name, number } }) => {
         <p>{number}</p>
       </div>
 
+      <button className={css.deleteBtn} type="button" onClick={handleEdit}>
+        Update
+      </button>
       <button className={css.deleteBtn} type="button" onClick={handleDelete}>
         Delete
       </button>

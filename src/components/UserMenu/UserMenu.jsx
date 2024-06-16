@@ -4,7 +4,7 @@ import { selectUser } from "../../redux/auth/selectors";
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector(selectUser);
+  const user = useSelector(selectUser);
 
   return (
     <div>
