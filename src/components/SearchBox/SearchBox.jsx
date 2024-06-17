@@ -25,16 +25,15 @@ const SearchBox = () => {
 
   return (
     <div className={css.serchForm}>
-      <label className={css.searchTitle} htmlFor={searchId}>
+      <label className={css.searchTitle} htmlFor={`${searchId}-name`}>
         Find contacts
       </label>
       <input
         className={css.serchInput}
         type="text"
-        id={searchId}
+        id={`${searchId}-name`}
         value={name || number}
         onChange={handleSearch}
-        name="name"
         placeholder="Enter name or number..."
       />
     </div>

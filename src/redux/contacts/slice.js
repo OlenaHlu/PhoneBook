@@ -22,6 +22,15 @@ const contactsSlice = createSlice({
     items: [],
     loading: false,
     error: null,
+    editing: {},
+  },
+  reducers: {
+    startEditing: (state, action) => {
+      state.editing[action.payload.id] = true;
+    },
+    stopEditing: (state, action) => {
+      state.editing[action.payload.id] = false;
+    },
   },
 
   extraReducers: (builder) => {
@@ -72,4 +81,5 @@ const contactsSlice = createSlice({
   },
 });
 
+export const { startEditing, stopEditing } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
