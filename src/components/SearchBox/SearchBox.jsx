@@ -2,16 +2,25 @@ import { useId } from "react";
 import css from "./SearchBox.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setStatusFilter } from "../../redux/filters/slice";
-import { selectNameFilter } from "../../redux/filters/selectors";
+import {
+  selectNameFilter,
+  selectNumberFilter,
+} from "../../redux/filters/selectors";
 
 const SearchBox = () => {
   const searchId = useId();
   const dispatch = useDispatch();
-  const filter = useSelector(selectNameFilter);
+  const name = useSelector(selectNameFilter);
+  const number = useSelector(selectNumberFilter);
 
   const handleSearch = (event) => {
     const query = event.target.value.trim();
-    dispatch(setStatusFilter(query));
+    dispatch(
+      setStatusFilter({
+        name: query.toLowerCase(),
+        number: query,
+      })
+    );
   };
 
   return (
@@ -23,7 +32,7 @@ const SearchBox = () => {
         className={css.serchInput}
         type="text"
         id={searchId}
-        value={filter}
+        value={name || number}
         onChange={handleSearch}
         name="name"
         placeholder="Enter name or number..."
