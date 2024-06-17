@@ -1,11 +1,11 @@
 import { RiUser6Fill } from "react-icons/ri";
 import { MdPhone } from "react-icons/md";
 import css from "./Contact.module.css";
-
-import { useDispatch } from "react-redux"; //
-import { deleteContact, editContact } from "../../redux/contacts/operations";
-import { toast } from "react-hot-toast"; //
+import { useDispatch } from "react-redux";
+import { editContact } from "../../redux/contacts/operations";
+import { toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
+import { openModal } from "../../redux/modal/slice";
 
 const infoToast = (message, type) => {
   toast(message, {
@@ -25,7 +25,7 @@ const Contact = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteContact(id));
+    dispatch(openModal(id));
   };
 
   const handleEdit = ({ name, number }) => {

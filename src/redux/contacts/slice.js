@@ -55,12 +55,12 @@ const contactsSlice = createSlice({
 
       .addCase(editContact.pending, handlePending)
       .addCase(editContact.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
         const index = state.items.findIndex(
-          (task) => task.id === action.payload.id
+          (contact) => contact.id === action.payload.id
         );
-        state.items[index] = action.payload;
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
       })
       .addCase(editContact.rejected, handleRejected)
 

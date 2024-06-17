@@ -7,6 +7,7 @@ import ContactList from "../../components/ContactList/ContactList"; //
 import ContactForm from "../../components/ContactForm/ContactForm"; //
 import SearchBox from "../../components/SearchBox/SearchBox"; //
 import { toast } from "react-toastify"; //
+import ModalForm from "../../components/ModalForm/ModalForm";
 
 const infoToast = (message, type) => {
   toast(message, {
@@ -42,6 +43,7 @@ function ContactsPage() {
       <SearchBox />
       <div>{loading && "Request in progress..."}</div>
       <ContactList />
+      <ModalForm />
     </>
   );
 }
