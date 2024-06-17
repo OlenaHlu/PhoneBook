@@ -36,17 +36,24 @@ const ContactForm = () => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-      .min(2, "Too Short!")
+      .min(3, "Too Short!")
       .max(30, "Too Long!")
       .required("Required"),
     number: Yup.string()
       .min(9, "Too Short!")
       .max(12, "Too Long!")
+      .matches(
+        /^\d{0,3}-?\d{0,2}-?\d{0,2}(-?\d{0,3})?$/,
+        "Invalid phone number format"
+      )
       .required("Required"),
   });
+
   const handleSubmit = (values, actions) => {
     values.id = nanoid();
     const { name, number } = values;
+    console.log("Submitting contact:", { name, number });
+
     dispatch(addContact({ name, number }))
       .unwrap()
       .then(() => {
@@ -76,7 +83,7 @@ const ContactForm = () => {
               type="text"
               name="name"
               id={nameFieldId}
-              placeholder="Enter your name"
+              placeholder="Enter name"
             />
             <ErrorMessage className={css.formErr} name="name" component="div" />
           </div>
@@ -90,7 +97,7 @@ const ContactForm = () => {
               type="text"
               name="number"
               id={numberFieldId}
-              placeholder="Enter your phone number"
+              placeholder="Enter phone number"
             />
             <ErrorMessage
               className={css.formErr}

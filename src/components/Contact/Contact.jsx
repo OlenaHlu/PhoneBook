@@ -1,10 +1,10 @@
 import { RiUser6Fill } from "react-icons/ri";
 import { MdPhone } from "react-icons/md";
 import css from "./Contact.module.css";
-import { useDispatch } from "react-redux";
-import { deleteContact, editContact } from "../../redux/contacts/operations";
 
-import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux"; //
+import { deleteContact, editContact } from "../../redux/contacts/operations";
+import { toast } from "react-hot-toast"; //
 import "react-toastify/dist/ReactToastify.css";
 
 const infoToast = (message, type) => {
@@ -50,7 +50,7 @@ const Contact = ({ contact: { id, name, number } }) => {
         <p>{number}</p>
       </div>
 
-      <button className={css.deleteBtn} type="button" onClick={handleEdit}>
+      <button className={css.deleteBtn} type="submit" onClick={handleEdit}>
         Update
       </button>
       <button className={css.deleteBtn} type="button" onClick={handleDelete}>
