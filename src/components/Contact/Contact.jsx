@@ -1,7 +1,7 @@
 import { RiUser6Fill } from "react-icons/ri";
 import { MdPhone } from "react-icons/md";
 import css from "./Contact.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { editContact } from "../../redux/contacts/operations";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -52,60 +52,66 @@ const Contact = ({ contact: { id, name, number } }) => {
   };
 
   return (
-    <div className={css.contactContainer}>
-      <div className={css.contactItem}>
-        <RiUser6Fill />
-        {isEditing ? (
-          <input
-            className={css.contactNameInput}
-            name="name"
-            value={updateContact.name}
-            onChange={onChange}
-          />
-        ) : (
-          <p className={css.contactName}>{name}</p>
-        )}
-      </div>
-      <div className={css.contactItem}>
-        <MdPhone />
-        {isEditing ? (
-          <input
-            className={css.contactNumberInput}
-            name="number"
-            value={updateContact.number}
-            onChange={onChange}
-          />
-        ) : (
-          <p>{number}</p>
-        )}
-      </div>
+    <div className={css.container}>
+      <div className={css.contactContainer}>
+        <div className={css.contactItem}>
+          <RiUser6Fill className={css.icon} />
+          {isEditing ? (
+            <input
+              className={css.contactNameInput}
+              name="name"
+              value={updateContact.name}
+              onChange={onChange}
+            />
+          ) : (
+            <p className={css.contactName}>{name}</p>
+          )}
+        </div>
+        <div className={css.contactItem}>
+          <MdPhone className={css.icon} />
+          {isEditing ? (
+            <input
+              className={css.contactNumberInput}
+              name="number"
+              value={updateContact.number}
+              onChange={onChange}
+            />
+          ) : (
+            <p>{number}</p>
+          )}
+        </div>
 
-      {isEditing ? (
-        <>
-          <button className={css.deleteBtn} type="button" onClick={handleEdit}>
-            Update
-          </button>
+        {isEditing ? (
+          <>
+            <button
+              className={css.deleteBtn}
+              type="button"
+              onClick={handleEdit}
+            >
+              Update
+            </button>
+            <button
+              className={css.deleteBtn}
+              type="button"
+              onClick={handleStopEditing}
+            >
+              Cancel
+            </button>
+          </>
+        ) : (
           <button
             className={css.deleteBtn}
             type="button"
-            onClick={handleStopEditing}
+            onClick={handleStartEditing}
           >
-            Cancel
+            Edit
           </button>
-        </>
-      ) : (
-        <button
-          className={css.deleteBtn}
-          type="button"
-          onClick={handleStartEditing}
-        >
-          Edit
-        </button>
-      )}
+        )}
 
-      <button className={css.deleteBtn} type="button" onClick={handleDelete}>
-        Delete
-      </button>
+        <button className={css.deleteBtn} type="button" onClick={handleDelete}>
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

@@ -8,6 +8,8 @@ import {
 } from "../../redux/modal/selectors";
 import { toast } from "react-toastify";
 
+import css from "./ModalForm.module.css";
+
 Modal.setAppElement("#root");
 
 const infoToast = (message, type) => {
@@ -48,13 +50,31 @@ const ModalForm = () => {
   };
 
   return (
-    <Modal isOpen={isModalOpen} onRequestClose={handleCloseModal}>
-      <p>This contact will be deleted. Continue?</p>
-      <div>
-        <button onClick={handleConfirmModal}>Yes</button>
-        <button onClick={handleCloseModal}>No</button>
-      </div>
-    </Modal>
+    <div className={css.modalContainer}>
+      <Modal
+        className={css.modal}
+        isOpen={isModalOpen}
+        onRequestClose={handleCloseModal}
+      >
+        <p className={css.modalTitle}>
+          This contact will be deleted. Continue?
+        </p>
+        <div>
+          <ul className={css.btnItem}>
+            <li>
+              <button className={css.deleteBtn} onClick={handleConfirmModal}>
+                Yes
+              </button>
+            </li>
+            <li>
+              <button className={css.deleteBtn} onClick={handleCloseModal}>
+                No
+              </button>
+            </li>
+          </ul>
+        </div>
+      </Modal>
+    </div>
   );
 };
 

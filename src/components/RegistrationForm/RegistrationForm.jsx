@@ -4,6 +4,10 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import { useId } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import css from "./RegistrationForm.module.css";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { RiUser6Fill } from "react-icons/ri";
+import { MdPhone } from "react-icons/md";
 
 const infoToast = (message, type) => {
   toast(message, {
@@ -56,45 +60,78 @@ const RegistrationForm = () => {
   };
 
   return (
-    <Formik
-      onSubmit={handleSubmit}
-      initialValues={{ name: "", email: "", password: "" }}
-      validationSchema={registerSchema}
-    >
-      <Form>
-        <div>
-          <label htmlFor={nameId}>Username</label>
-          <Field
-            type="text"
-            name="name"
-            id={nameId}
-            placeholder="Enter your name..."
-          />
-          <ErrorMessage name="name" component="div" />
-        </div>
-        <div>
-          <label htmlFor={emailId}>Email</label>
-          <Field
-            type="email"
-            name="email"
-            id={emailId}
-            placeholder="Enter your email..."
-          />
-          <ErrorMessage name="email" component="div" />
-        </div>
-        <div>
-          <label htmlFor={passwordId}>Password</label>
-          <Field
-            type="password"
-            name="password"
-            id={passwordId}
-            placeholder="Enter your password..."
-          />
-          <ErrorMessage name="password" component="div" />
-        </div>
-        <button type="submit">Register</button>
-      </Form>
-    </Formik>
+    <div className={css.container}>
+      <div className={css.formContainer}>
+        <Formik
+          onSubmit={handleSubmit}
+          initialValues={{ name: "", email: "", password: "" }}
+          validationSchema={registerSchema}
+        >
+          <Form className={css.form}>
+            <p className={css.formTitle}>Create your account</p>
+            <div>
+              <label className={css.formInputLabel} htmlFor={nameId}>
+                Username
+              </label>
+              <div className={css.iconPosition}>
+                <RiUser6Fill className={css.icon} />
+                <Field
+                  className={css.input}
+                  type="text"
+                  name="name"
+                  id={nameId}
+                  placeholder="Enter your name..."
+                />
+              </div>
+              <ErrorMessage className={css.error} name="name" component="div" />
+            </div>
+            <div>
+              <label className={css.formInputLabel} htmlFor={emailId}>
+                Email
+              </label>
+              <div className={css.iconPosition}>
+                <MdPhone className={css.icon} />
+                <Field
+                  className={css.input}
+                  type="email"
+                  name="email"
+                  id={emailId}
+                  placeholder="Enter your email..."
+                />
+              </div>
+              <ErrorMessage
+                className={css.error}
+                name="email"
+                component="div"
+              />
+            </div>
+            <div>
+              <label className={css.formInputLabel} htmlFor={passwordId}>
+                Password
+              </label>
+              <div className={css.iconPosition}>
+                <RiLockPasswordLine className={css.icon} />
+                <Field
+                  className={css.input}
+                  type="password"
+                  name="password"
+                  id={passwordId}
+                  placeholder="Enter your password..."
+                />
+              </div>
+              <ErrorMessage
+                className={css.error}
+                name="password"
+                component="div"
+              />
+            </div>
+            <button className={css.btn} type="submit">
+              Register
+            </button>
+          </Form>
+        </Formik>
+      </div>
+    </div>
   );
 };
 

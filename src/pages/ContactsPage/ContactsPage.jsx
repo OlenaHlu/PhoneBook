@@ -1,12 +1,12 @@
-import { useEffect } from "react"; //
-import { useDispatch, useSelector } from "react-redux"; //
-import DocumentTitle from "../../components/DocumentTitle/DocumentTitle"; //
-import { selectLoading } from "../../redux/contacts/selectors"; //
-import { fetchContacts } from "../../redux/contacts/operations"; //
-import ContactList from "../../components/ContactList/ContactList"; //
-import ContactForm from "../../components/ContactForm/ContactForm"; //
-import SearchBox from "../../components/SearchBox/SearchBox"; //
-import { toast } from "react-toastify"; //
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
+import { selectLoading } from "../../redux/contacts/selectors";
+import { fetchContacts } from "../../redux/contacts/operations";
+import ContactList from "../../components/ContactList/ContactList";
+import ContactForm from "../../components/ContactForm/ContactForm";
+import SearchBox from "../../components/SearchBox/SearchBox";
+import { toast } from "react-toastify";
 import ModalForm from "../../components/ModalForm/ModalForm";
 
 const infoToast = (message, type) => {

@@ -1,0 +1,43 @@
+.modalTitle {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: #085e49;
+}
+.deleteBtn {
+  border-radius: 6px;
+  height: 35px;
+  background-color: #c15757;
+  color: rgb(221, 210, 206);
+  margin-top: 8px;
+  width: 150px;
+  border: 1px solid #0c311e;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.deleteBtn:hover,
+.deleteBtn:focus {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #085e49;
+  border: 1px solid #085e49;
+}
+
+.btnItem {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.modal {
+  background-color: #c764647b;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ce3434;
+  width: 400px;
+  border-radius: 10px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: rgba(99, 46, 46, 0.5) 5px 20px 50px 10px;
+}

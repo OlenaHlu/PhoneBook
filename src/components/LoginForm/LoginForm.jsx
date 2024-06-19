@@ -4,8 +4,12 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import { useId } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RiUser6Fill } from "react-icons/ri";
+import { MdPhone } from "react-icons/md";
 
 import * as Yup from "yup";
+
+import css from "./LoginForm.module.css";
 
 const infoToast = (message, type) => {
   toast(message, {
@@ -51,36 +55,64 @@ const LoginForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={{ email: "", password: "" }}
-      validationSchema={contactsSchema}
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <div>
-          <label htmlFor={emailId}>Email</label>
-          <Field
-            type="email"
-            name="email"
-            id={emailId}
-            placeholder="Enter your email..."
-          />
-          <ErrorMessage name="email" component="div" />
-        </div>
-        <div>
-          <label htmlFor={passwordId}>Password</label>
-          <Field
-            type="password"
-            name="password"
-            id={passwordId}
-            placeholder="Enter your password..."
-          />
-          <ErrorMessage name="password" component="div" />
-        </div>
-        <button type="submit">Log In</button>
-      </Form>
-    </Formik>
+    <div className={css.container}>
+      <div className={css.formContainer}>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          validationSchema={contactsSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form className={css.form}>
+            <p className={css.formTitle}>Login Form</p>
+            <div>
+              <label className={css.formInputLabel} htmlFor={emailId}>
+                Email
+              </label>
+              <div className={css.iconPosition}>
+                <RiUser6Fill className={css.icon} />
+                <Field
+                  className={css.input}
+                  type="email"
+                  name="email"
+                  id={emailId}
+                  placeholder="Enter your email..."
+                />
+              </div>
+              <ErrorMessage
+                className={css.error}
+                name="email"
+                component="div"
+              />
+            </div>
+            <div>
+              <label className={css.formInputLabel} htmlFor={passwordId}>
+                Password
+              </label>
+              <div className={css.iconPosition}>
+                <MdPhone className={css.icon} />
+                <Field
+                  className={css.input}
+                  type="password"
+                  name="password"
+                  id={passwordId}
+                  placeholder="Enter your password..."
+                />
+              </div>
+              <ErrorMessage
+                className={css.error}
+                name="password"
+                component="div"
+              />
+            </div>
+            <button className={css.btn} type="submit">
+              Log In
+            </button>
+          </Form>
+        </Formik>
+      </div>
+    </div>
   );
 };
+//
 
 export default LoginForm;

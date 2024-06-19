@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import { toast } from "react-toastify";
 import { selectUser } from "../../redux/auth/selectors";
-
+import { RiUser6Fill } from "react-icons/ri";
+import { MdPhone } from "react-icons/md";
 import css from "./ContactForm.module.css";
+import { FaFaceSmileBeam } from "react-icons/fa6";
 
 const initialValues = {
   name: "",
@@ -66,52 +68,65 @@ const ContactForm = () => {
   };
 
   return (
-    <>
-      <p>Welcome, {name}!</p>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
-      >
-        <Form className={css.formContainer}>
-          <div className={css.inputContainer}>
-            <label className={css.inputTitle} htmlFor={nameFieldId}>
-              Name
-            </label>
-            <Field
-              className={css.inputItem}
-              type="text"
-              name="name"
-              id={nameFieldId}
-              placeholder="Enter name"
-            />
-            <ErrorMessage className={css.formErr} name="name" component="div" />
-          </div>
+    <div className={css.container}>
+      <div className={css.formContainer}>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          <Form className={css.form}>
+            <p className={css.formTitle}>
+              Bring Someone New Onboard!
+              <span>
+                <FaFaceSmileBeam className={css.smileIcon} />
+              </span>
+            </p>
+            <div className={css.inputContainer}>
+              <label className={css.formInputLabel} htmlFor={nameFieldId}>
+                Name
+              </label>
+              <div className={css.iconPosition}>
+                <RiUser6Fill className={css.icon} />
+                <Field
+                  className={css.input}
+                  type="text"
+                  name="name"
+                  id={nameFieldId}
+                  placeholder="Enter name"
+                />
+              </div>
+              <ErrorMessage className={css.error} name="name" component="div" />
+            </div>
 
-          <div className={css.inputContainer}>
-            <label className={css.inputTitle} htmlFor={numberFieldId}>
-              Number
-            </label>
-            <Field
-              className={css.inputItem}
-              type="text"
-              name="number"
-              id={numberFieldId}
-              placeholder="Enter phone number"
-            />
-            <ErrorMessage
-              className={css.formErr}
-              name="number"
-              component="div"
-            />
-          </div>
+            <div className={css.inputContainer}>
+              <label className={css.formInputLabel} htmlFor={numberFieldId}>
+                Number
+              </label>
+              <div className={css.iconPosition}>
+                <MdPhone className={css.icon} />
+                <Field
+                  className={css.input}
+                  type="text"
+                  name="number"
+                  id={numberFieldId}
+                  placeholder="Enter phone number"
+                />
+              </div>
+              <ErrorMessage
+                className={css.error}
+                name="number"
+                component="div"
+              />
+            </div>
 
-          <button className={css.formBtn} type="submit">
-            Add contact
-          </button>
-        </Form>
-      </Formik>
-    </>
+            <button className={css.btn} type="submit">
+              Add contact
+            </button>
+          </Form>
+        </Formik>
+      </div>
+    </div>
   );
 };
 

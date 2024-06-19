@@ -50,16 +50,8 @@
   background-color: rgba(255, 255, 255, 0.4);
 }
 
-.error {
-  height: 20px;
-  margin: 10px 0;
-  text-transform: uppercase;
-  font-weight: 400;
-  color: #cf590a;
-}
-
 .btn {
-  width: 150px;
+  width: 120px;
   padding: 12px;
   border: none;
   margin-top: 30px;
@@ -82,6 +74,14 @@
   border: 1px solid #085e49;
 }
 
+.error {
+  height: 20px;
+  margin: 10px 0;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #cf590a;
+}
+
 .iconPosition {
   position: relative;
 }
@@ -91,8 +91,4 @@
   top: 25%;
   transform: translateX(100%);
   color: #085e49;
-}
-
-.smileIcon {
-  margin-left: 5px;
 }
