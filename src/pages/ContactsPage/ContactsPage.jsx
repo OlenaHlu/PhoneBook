@@ -25,7 +25,6 @@ const infoToast = (message, type) => {
 
 function ContactsPage() {
   const dispatch = useDispatch();
-  const loading = useSelector(selectLoading);
 
   useEffect(() => {
     dispatch(fetchContacts())
@@ -41,7 +40,6 @@ function ContactsPage() {
       <DocumentTitle>Your contacts</DocumentTitle>
       <ContactForm />
       <SearchBox />
-      <div>{loading && "Request in progress..."}</div>
       <ContactList />
       <ModalForm />
     </>
