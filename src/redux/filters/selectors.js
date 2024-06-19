@@ -3,15 +3,13 @@ import { selectContacts } from "../contacts/selectors";
 
 export const selectNameFilter = (state) => state.filters.name;
 
-export const selectNumberFilter = (state) => state.filters.number;
-
 export const selectFilteredContacts = createSelector(
-  [selectContacts, selectNameFilter, selectNumberFilter],
-  (contacts, nameFilter, numberFilter) => {
+  [selectContacts, selectNameFilter],
+  (contacts, nameFilter) => {
     return contacts.filter(
       (contact) =>
         contact.name.toLowerCase().includes(nameFilter.toLowerCase()) ||
-        contact.number.includes(numberFilter)
+        contact.number.includes(nameFilter)
     );
   }
 );

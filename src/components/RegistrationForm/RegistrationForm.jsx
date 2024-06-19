@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { useId } from "react";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 const infoToast = (message, type) => {

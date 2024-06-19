@@ -3,50 +3,52 @@ import { MdPhone } from "react-icons/md";
 import css from "./Contact.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { editContact } from "../../redux/contacts/operations";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { openModal } from "../../redux/modal/slice";
-import { startEditing, stopEditing } from "../../redux/contacts/slice.js";
+import { useState } from "react";
+
+const infoToast = (message, type) => {
+  toast(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: type === "success" ? "light" : "colored",
+    type: type,
+  });
+};
 
 const Contact = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
-  const isEditing = useSelector((state) => state.contacts.isEditing);
+  const [isEditing, setIsEditing] = useState(false);
+  const [updateContact, setUpdateContact] = useState({ name, number });
 
-  const infoToast = (message, type) => {
-    toast(message, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: type === "success" ? "light" : "colored",
-      type: type,
-    });
-  };
-
-  const handleDelete = () => {
-    dispatch(openModal(id));
-  };
+  const onChange = (event) =>
+    setUpdateContact((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  const handleStartEditing = () => setIsEditing(true);
+  const handleStopEditing = () => setIsEditing(false);
 
   const handleEdit = () => {
-    dispatch(editContact({ id, name, number }))
+    dispatch(editContact({ id, ...updateContact }))
       .unwrap()
       .then(() => {
         infoToast("Edit success!", "success");
+        setIsEditing(false);
       })
       .catch(() => {
         infoToast("Edit failed!", "error");
       });
   };
 
-  const handleStartEditing = () => {
-    dispatch(startEditing());
-  };
-
-  const handleStopEditing = () => {
-    dispatch(stopEditing());
+  const handleDelete = () => {
+    dispatch(openModal(id));
   };
 
   return (
@@ -56,10 +58,9 @@ const Contact = ({ contact: { id, name, number } }) => {
         {isEditing ? (
           <input
             className={css.contactNameInput}
-            value={name}
-            onChange={(event) =>
-              dispatch(editContact({ id, name: event.target.value, number }))
-            }
+            name="name"
+            value={updateContact.name}
+            onChange={onChange}
           />
         ) : (
           <p className={css.contactName}>{name}</p>
@@ -70,10 +71,9 @@ const Contact = ({ contact: { id, name, number } }) => {
         {isEditing ? (
           <input
             className={css.contactNumberInput}
-            value={number}
-            onChange={(event) =>
-              dispatch(editContact({ id, name, number: event.target.value }))
-            }
+            name="number"
+            value={updateContact.number}
+            onChange={onChange}
           />
         ) : (
           <p>{number}</p>
@@ -82,7 +82,7 @@ const Contact = ({ contact: { id, name, number } }) => {
 
       {isEditing ? (
         <>
-          <button className={css.deleteBtn} type="submit" onClick={handleEdit}>
+          <button className={css.deleteBtn} type="button" onClick={handleEdit}>
             Update
           </button>
           <button
